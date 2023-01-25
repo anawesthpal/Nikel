@@ -12,7 +12,6 @@ document.getElementById("login-form").addEventListener("submit", function(e) {
     const password = document.getElementById("password-input").value;
     const checkSession = document.getElementById("session-check").checked;
 
-    
     const account = getAccount(email);
 
     if(!account) {
@@ -20,16 +19,17 @@ document.getElementById("login-form").addEventListener("submit", function(e) {
         return;
     }
     
-    if(!account.password) {
-        alert("Opps! Verifique o usuário ou a senha.");
-        return;
-    }
-
+    if(account) {
+        if(account.password !== password) {
+            alert("Opps! Verifique o usuário ou senha");
+            return;
+        }
     
     saveSession(email, checkSession);
 
     window.location.href = "home.html";
 
+    }
 });
 
 //CRIAR CONTA
